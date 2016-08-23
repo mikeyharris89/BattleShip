@@ -7,18 +7,33 @@ var Route = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
 var Link = ReactRouter.Link;
 var hashHistory = ReactRouter.hashHistory;
-var GameShow = require('./components/gameShow.jsx');
+var GameShow = require('./components/gameShow');
+var ClientActions = require('./actions/client_actions');
 var App = React.createClass({
+  getInitialState: function(){
+    return ({name: ""});
+  },
+
+  nameChange: function(e) {
+    this.setState({ name: e.target.value })
+  },
+
+  handleSubmit: function(e){
+      e.preventDefault();
+      var formData = {name: this.state.name}
+      ClientActions.createPlayer(formData);
+  },
+
   render: function() {
     return (
       <div>
         <h1>Battleship</h1>
 
-        <p>To Get Started Enter Your Name Below</p>
-        <input>
-
-        </input>
-        <Link to="/games/1">start game </Link>
+        <form onSubmit={this.handleSubmit}>
+          <p>To Get Started Enter Your Name Below</p>
+          <input value={this.state.name} onChange={this.nameChange}/>
+          <button type="submit">Submit!</button>
+        </form>
       </div>
     )
   }
@@ -37,3 +52,7 @@ document.addEventListener('DOMContentLoaded', function(){
   var root = document.getElementById('root');
   ReactDOM.render(router, root);
 });
+
+var startGame = function(e) {
+
+}

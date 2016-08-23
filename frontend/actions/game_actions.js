@@ -3,11 +3,6 @@ var GameApiUtil = require('../util/game_api_util'),
     GameConstants = require('../constants/game_constants');
 
 var GameActions = {
-  createGame: function() {
-    AppDispatcher.dispatch({
-      actionType: GameConstants.
-    });
-  },
 
   receiveSingleGame: function(game) {
     AppDispatcher.dispatch({
@@ -15,4 +10,13 @@ var GameActions = {
       game: game
     });
   },
+
+  removeGame: function(game) {
+    AppDispatcher.dispatch({
+      actionType: GameConstants.REMOVED_GAME,
+      game: game
+    });
+  }
 };
+
+module.exports = GameActions;

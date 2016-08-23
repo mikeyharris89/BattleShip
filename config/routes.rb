@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     resources :games, only: [:index, :create, :show, :destroy]
+    resources :players, only: [:show, :create, :destroy]
   end
 end

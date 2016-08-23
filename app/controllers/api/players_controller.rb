@@ -1,13 +1,20 @@
 class Api::PlayersController < ApplicationController
   def create
-    @player = Player.new(player_params[:player])
+    debugger
+    @player = Player.new(player_params)
     if @player.save
-      redirect
+      render 'show'
     else
-      render 'index'
+      redirect_to '/'
     end
   end
-  
+
+  def destroy
+    @player = Player.find(params[:id])
+    @player.destroy
+    redirect_to "/"
+  end
+
   private
 
   def player_params
