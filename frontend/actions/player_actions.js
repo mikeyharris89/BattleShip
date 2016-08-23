@@ -1,12 +1,12 @@
-var PlayerApiUtil = require('../util/player_api_util'),
-    AppDispatcher = require('../dispatcher/dispatcher'),
+var AppDispatcher = require('../dispatcher/dispatcher'),
     PlayerConstants = require('../constants/player_constants');
 
 var PlayerActions = {
 
   receiveSinglePlayer: function(player) {
+    debugger
     AppDispatcher.dispatch({
-      actionType: PlayerConstants.RECEIEVED_PLAYER,
+      actionType: PlayerConstants.RECEIVED_PLAYER,
       player: player
     });
   },

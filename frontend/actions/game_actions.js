@@ -6,7 +6,7 @@ var GameActions = {
 
   receiveSingleGame: function(game) {
     AppDispatcher.dispatch({
-      actionType: GameConstants.RECEIEVED_GAME,
+      actionType: GameConstants.RECEIVED_GAME,
       game: game
     });
   },

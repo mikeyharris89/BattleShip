@@ -1,6 +1,5 @@
 class Api::PlayersController < ApplicationController
   def create
-    debugger
     @player = Player.new(player_params)
     if @player.save
       render 'show'

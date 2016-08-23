@@ -1,9 +1,9 @@
 
 class Player < ActiveRecord::Base
-  attr_reader :name
+  # attr_reader :name
 
   has_many :games
-  
+
 
   # def initialize(name, ships = 10)
   #   debugger

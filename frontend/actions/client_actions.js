@@ -4,7 +4,6 @@ var PlayerApiUtil = require("../util/player_api_util");
 var ClientActions = {
 
   createPlayer: function(data){
-    debugger
     PlayerApiUtil.createPlayer(data);
   },
 

@@ -5,9 +5,9 @@ var PlayerApiUtil = {
     $.ajax({
       url: "api/players",
       type: "POST",
-      contentType: false,
-      processData: false,
-      data: data,
+      // contentType: false,
+      // processData: false,
+      data: {player: data},
       success: function(player){
         PlayerActions.receiveSinglePlayer(player);
       },
