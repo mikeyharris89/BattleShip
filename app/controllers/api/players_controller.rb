@@ -7,7 +7,7 @@ class Api::PlayersController < ApplicationController
       render 'index'
     end
   end
-
+  
   private
 
   def player_params

@@ -7,9 +7,9 @@ class Api::GamesController < ApplicationController
   def create
     @game = Game.new(params[:game])
     if @game.save
-      render 'show'
+      render :show
     else
-      render 'show'
+      redirect_to '/'
     end
   end
 
