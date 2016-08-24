@@ -5,11 +5,11 @@ var AppDispatcher = require('../dispatcher/dispatcher'),
 
 var PlayerStore = new Store(AppDispatcher);
 
-var _currentPlayer = {};
+var _currentPlayer;
 
 var setPlayer = function(player){
-    debugger
-  _currentPlayer[player.id] = player;
+  _currentPlayer = player;
+  ClientActions.createGame({player_id: _currentPlayer.id});
 };
 
 var removePlayer = function(player) {
@@ -21,12 +21,11 @@ PlayerStore.currentPlayer = function() {
 };
 
 PlayerStore.__onDispatch = function(payload) {
-  debugger
     switch(payload.actionType){
       case(PlayerConstants.RECEIVED_PLAYER):
         setPlayer(payload.player);
         break;
-      case(PlayerConstant.REMOVED_PLAYER):
+      case(PlayerConstants.REMOVED_PLAYER):
         removePlayer(payload.player);
         break;
     }

@@ -5,9 +5,7 @@ var GameApiUtil = {
     $.ajax({
       url: "api/games",
       type: "POST",
-      contentType: false,
-      processData: false,
-      data: data,
+      data: {game: data},
       success: function(game){
         GameActions.receiveSingleGame(game);
       },

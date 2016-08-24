@@ -9,6 +9,7 @@ var Link = ReactRouter.Link;
 var hashHistory = ReactRouter.hashHistory;
 var GameShow = require('./components/gameShow');
 var ClientActions = require('./actions/client_actions');
+var PlayerStore = require('./stores/player_store');
 var App = React.createClass({
   getInitialState: function(){
     return ({name: ""});
@@ -28,7 +29,7 @@ var App = React.createClass({
     return (
       <div>
         <h1>Battleship</h1>
-
+          {this.props.children}
         <form onSubmit={this.handleSubmit}>
           <p>To Get Started Enter Your Name Below</p>
           <input value={this.state.name} onChange={this.nameChange}/>

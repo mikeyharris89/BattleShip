@@ -4,7 +4,6 @@ var AppDispatcher = require('../dispatcher/dispatcher'),
 var PlayerActions = {
 
   receiveSinglePlayer: function(player) {
-    debugger
     AppDispatcher.dispatch({
       actionType: PlayerConstants.RECEIVED_PLAYER,
       player: player
