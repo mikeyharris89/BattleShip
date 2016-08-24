@@ -1,18 +1,18 @@
 var AppDispatcher = require('../dispatcher/dispatcher'),
     ClientActions = require('../actions/client_actions'),
-    GameConstants = require('../constant/game_constants'),
+    GameConstants = require('../constants/game_constants'),
     Store = require('flux/utils').Store;
 
 var GameStore = new Store(AppDispatcher);
 
-var _currentGame = {};
+var _currentGame;
 
 var setGame = function(game){
-  _currentGame[game.id] = game;
+  _currentGame= game;
 };
 
 var removeGame = function(game) {
-  delete _currentGame[game.id];
+  _currentGame = null;
 };
 
 GameStore.currentGame = function() {
@@ -24,7 +24,7 @@ GameStore.__onDispatch = function (payload){
       case(GameConstants.RECEIVED_GAME):
         setGame(payload.game);
         break;
-      case(GameConstant.REMOVED_GAME):
+      case(GameConstants.REMOVED_GAME):
         removeGame(payload.game);
         break;
     }

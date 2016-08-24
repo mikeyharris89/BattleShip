@@ -1,14 +1,14 @@
-var React = require('react');
+var React = require('react'),
+    Link = require('react-router').Link,
+    GameStore = require('../stores/game_store');
 
 var GameShow = React.createClass({
-  getInitialState: function() {
-
-  },
-
   render: function() {
-
     return (
-      <div>Hi</div>
+      <div>
+        <p>Heloooo</p>
+      </div>
+
     );
   }
 

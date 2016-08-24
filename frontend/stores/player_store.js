@@ -9,11 +9,10 @@ var _currentPlayer;
 
 var setPlayer = function(player){
   _currentPlayer = player;
-  ClientActions.createGame({player_id: _currentPlayer.id});
 };
 
 var removePlayer = function(player) {
-  delete _currentPlayer[player.id];
+  _currentPlayer = null;
 };
 
 PlayerStore.currentPlayer = function() {
