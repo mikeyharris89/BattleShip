@@ -7,6 +7,10 @@ var ClientActions = {
     PlayerApiUtil.createPlayer(data);
   },
 
+  deletePlayer: function(id){
+    PlayerApiUtil.deletePlayer(id);
+  },
+
   createGame: function(data){
     GameApiUtil.createGame(data);
   },

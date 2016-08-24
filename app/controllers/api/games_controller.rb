@@ -10,14 +10,14 @@ class Api::GamesController < ApplicationController
   end
 
   def show
-    @game = Game.find(params[:id])
+    @game = Game.find(params[:id].to_i)
     render "finished" if @game.gameover?
   end
 
   def destroy
     @game = Game.find(params[:id])
     @game.destroy
-    render 'index'
+    render :show
   end
 
   private

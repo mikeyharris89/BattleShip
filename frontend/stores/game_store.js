@@ -1,5 +1,4 @@
 var AppDispatcher = require('../dispatcher/dispatcher'),
-    ClientActions = require('../actions/client_actions'),
     GameConstants = require('../constants/game_constants'),
     Store = require('flux/utils').Store;
 
@@ -8,7 +7,7 @@ var GameStore = new Store(AppDispatcher);
 var _currentGame;
 
 var setGame = function(game){
-  _currentGame= game;
+  _currentGame = game;
 };
 
 var removeGame = function(game) {

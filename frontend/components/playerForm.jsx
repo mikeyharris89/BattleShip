@@ -18,6 +18,10 @@ componentDidMount: function () {
    this.playerListener = PlayerStore.addListener(this.redirectIfLoggedIn);
  },
 
+ componentWillUnmount: function() {
+   this.playerListener.remove();
+ },
+
 redirectIfLoggedIn: function() {
   if (PlayerStore.currentPlayer()){
     this.context.router.push("players/" + PlayerStore.currentPlayer().id)

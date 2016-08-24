@@ -11,7 +11,6 @@ class Api::PlayersController < ApplicationController
   def destroy
     @player = Player.find(params[:id])
     @player.destroy
-    redirect_to "/"
   end
 
   private

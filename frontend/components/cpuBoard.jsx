@@ -5,51 +5,53 @@ var React = require('react'),
     BoardTile = require('./boardTile');
 
 
-var PlayerBoard = React.createClass({
+var CpuBoard = React.createClass({
 
   getInitialState: function () {
-    return ({ tiles: this.createTiles(), shipsToPlace: 10, shipsLeft: 10, shipSpots: []});
+    return ({ tiles: this.createTiles(), shipsHit: 0, shipsLeft: 10});
   },
-
-  // componentDidMount: function() {
-  //   window.addEventListener("click", this.setShips);
-  // },
-
 
   createTiles: function(){
     tiles = {};
     for (var i = 0; i < 25; i++) {
       tiles[i] = ({id: i, val: "0"});
     }
+    return this.setShips(tiles)
+  },
+
+  setShips: function(tiles) {
+    for (var i = 0; i < 10; i++) {
+      var tempNum = Math.floor(Math.random() * 25);
+      while (tiles[tempNum].val === "S"){
+        tempNum = Math.floor(Math.random() * 25);
+      }
+      tile = tiles[tempNum];
+      tile.val = "S";
+      tiles[tempNum] = tile;
+    }
     return tiles
   },
-  //
-  // componentWillUnmount: function() {
-  //   this.listener.remove();
-  // },
 
-  getTerms: function() {
-    this.setState({ tiles: TileStore.playerTiles});
-  },
 
-  handlePlayerBoardClick: function(e){
+  handleClick: function(e){
     var tile = this.state.tiles[parseInt(e.target.id)];
-    if (this.state.shipsToPlace > 0 && tile.val === "0"){
-      this.setShip(tile)
+    var shipsLeft = this.state.shipsLeft;
+    if (tile.val === "S"){
+      this.setMark(tile, "X", (shipsLeft - 1))
+    } else if (tile.val === "0"){
+      this.setMark(tile, "M", shipsLeft)
     }
+
   },
 
-  setShip: function(tile) {
-    tile.val = "S";
-    var tiles = this.state.tiles;
-    var spots = this.state.shipSpots.concat(tile.id);
+  setMark: function(tile, mark, shipsLeft){
+    tile.val = mark;
+    tiles = this.state.tiles;
     tiles[tile.id] = tile;
-    this.setState({tiles: tiles, shipsToPlace: this.state.shipsToPlace -= 1, shipSpots: spots});
-    console.log(this.state.shipSpots);
+    this.setState({tiles: tiles, shipsLeft: shipsLeft})
   },
 
   finished: function(number){
-    debugger
     return this.state.shipsLeft === 0
   },
 
@@ -65,7 +67,7 @@ var PlayerBoard = React.createClass({
     }
     return(
       <div>
-        <ul className="board" id="player-board" onClick={this.handlePlayerBoardClick}>
+        <ul className="board" id="computer-board" onClick={this.handleClick}>
           { board.map(function(tile){
             return tile;
           }) }
@@ -75,4 +77,4 @@ var PlayerBoard = React.createClass({
   }
 })
 
-module.exports = PlayerBoard;
+module.exports = CpuBoard;
