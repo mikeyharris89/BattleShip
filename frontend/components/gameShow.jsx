@@ -9,17 +9,19 @@ var React = require('react'),
 var GameShow = React.createClass({
   getInitialState: function() {
     var potentialGame = GameStore.currentGame();
-    return ( {game: potentialGame ? potentialGame : {}});
+    return ( {game: potentialGame ? potentialGame : {}, gameOver: false, playerWins: true});
   },
 
   contextTypes: {
     router: React.PropTypes.object.isRequired
   },
 
-  gameOver: function() {
-    // debugger
-    // return PlayerBoard.finished() || CpuBoard.finished()
-    return false
+  playerWins: function() {
+    this.setState({gameOver: true});
+  },
+
+  cpuWins: function() {
+    this.setState({gameOver: true, playerWins: false})
   },
 
   newGame: function() {
@@ -27,17 +29,25 @@ var GameShow = React.createClass({
     this.context.router.push("/")
   },
 
+  shipsSet: function() {
+    debugger
+  },
+
+  playGame: function() {
+
+  },
+
   render: function() {
     var buttonText = "Quit Game"
-    if (this.gameOver()){
+    if (this.state.gameOver){
       buttonText = "Play Again!"
     }
     return (
       <div>
         <p>Heloooo</p>
         <button onClick={this.newGame}>{buttonText}</button>
-        <PlayerBoard/>
-        <CpuBoard/>
+        <PlayerBoard doneShips={this.shipsSet} gameOver={this.cpuWins}/>
+        <CpuBoard gameOver={this.playerWins}/>
       </div>
 
     );

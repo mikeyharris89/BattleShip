@@ -11,11 +11,6 @@ var PlayerBoard = React.createClass({
     return ({ tiles: this.createTiles(), shipsToPlace: 10, shipsLeft: 10, shipSpots: []});
   },
 
-  // componentDidMount: function() {
-  //   window.addEventListener("click", this.setShips);
-  // },
-
-
   createTiles: function(){
     tiles = {};
     for (var i = 0; i < 25; i++) {
@@ -23,10 +18,6 @@ var PlayerBoard = React.createClass({
     }
     return tiles
   },
-  //
-  // componentWillUnmount: function() {
-  //   this.listener.remove();
-  // },
 
   getTerms: function() {
     this.setState({ tiles: TileStore.playerTiles});
@@ -45,10 +36,13 @@ var PlayerBoard = React.createClass({
     var spots = this.state.shipSpots.concat(tile.id);
     tiles[tile.id] = tile;
     this.setState({tiles: tiles, shipsToPlace: this.state.shipsToPlace -= 1, shipSpots: spots});
-    console.log(this.state.shipSpots);
+    if (this.state.shipsToPlace === 0){
+      debugger
+      this.props.doneShips();
+    }
   },
 
-  finished: function(number){
+  finished: function(){
     debugger
     return this.state.shipsLeft === 0
   },

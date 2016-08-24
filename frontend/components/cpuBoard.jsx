@@ -1,9 +1,7 @@
 var React = require('react'),
     TileStore = require('../stores/tile_store'),
     BoardActions = require('../actions/board_actions'),
-    GameStore = require('../stores/game_store'),
-    BoardTile = require('./boardTile');
-
+    GameStore = require('../stores/game_store');
 
 var CpuBoard = React.createClass({
 
@@ -49,10 +47,9 @@ var CpuBoard = React.createClass({
     tiles = this.state.tiles;
     tiles[tile.id] = tile;
     this.setState({tiles: tiles, shipsLeft: shipsLeft})
-  },
-
-  finished: function(number){
-    return this.state.shipsLeft === 0
+    if (shipsLeft === 0){
+      this.props.gameOver()
+    }
   },
 
   render: function() {
