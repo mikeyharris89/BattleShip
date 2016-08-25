@@ -1,6 +1,4 @@
 var React = require('react'),
-    TileStore = require('../stores/tile_store'),
-    BoardActions = require('../actions/board_actions'),
     GameStore = require('../stores/game_store');
 
 var CpuBoard = React.createClass({

@@ -1,5 +1,4 @@
 var AppDispatcher = require('../dispatcher/dispatcher'),
-    ClientActions = require('../actions/client_actions'),
     PlayerConstants = require('../constants/player_constants'),
     Store = require('flux/utils').Store;
 

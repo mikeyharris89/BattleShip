@@ -1,7 +1,6 @@
 var React = require('react'),
     Link = require('react-router').Link,
     GameStore = require('../stores/game_store'),
-    BoardActions = require('../actions/board_actions'),
     PlayerBoard = require('./playerBoard'),
     CpuBoard = require('./cpuBoard'),
     ClientActions = require('../actions/client_actions');

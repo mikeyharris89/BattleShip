@@ -1,5 +1,4 @@
 var React = require('react'),
-    BoardActions = require('../actions/board_actions'),
     GameStore = require('../stores/game_store');
 
 var PlayerBoard = React.createClass({
