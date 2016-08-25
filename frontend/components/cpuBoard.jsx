@@ -32,6 +32,7 @@ var CpuBoard = React.createClass({
 
 
   handleClick: function(e){
+
     var tile = this.state.tiles[parseInt(e.target.id)];
     var shipsLeft = this.state.shipsLeft;
     if (tile.val === "S"){
@@ -39,7 +40,6 @@ var CpuBoard = React.createClass({
     } else if (tile.val === "0"){
       this.setMark(tile, "M", shipsLeft)
     }
-
   },
 
   setMark: function(tile, mark, shipsLeft){
@@ -47,6 +47,7 @@ var CpuBoard = React.createClass({
     tiles = this.state.tiles;
     tiles[tile.id] = tile;
     this.setState({tiles: tiles, shipsLeft: shipsLeft})
+    this.props.spaceChanged();
     if (shipsLeft === 0){
       this.props.gameOver()
     }

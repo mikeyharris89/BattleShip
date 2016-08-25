@@ -9,7 +9,12 @@ var React = require('react'),
 var GameShow = React.createClass({
   getInitialState: function() {
     var potentialGame = GameStore.currentGame();
-    return ( {game: potentialGame ? potentialGame : {}, gameOver: false, playerWins: true});
+    return ( {game: potentialGame ? potentialGame : {},
+              showCpu: false,
+              cpuTurn: false,
+              gameOver: false,
+              playerWins: true,
+            });
   },
 
   contextTypes: {
@@ -30,24 +35,47 @@ var GameShow = React.createClass({
   },
 
   shipsSet: function() {
-    debugger
+    this.setState({showCpu: true})
   },
 
-  playGame: function() {
+  attackPlayer: function(){
 
+    this.setState({cpuTurn: true})
+  },
+
+  playerAttacked: function() {
+
+    this.setState({cpuTurn: false})
   },
 
   render: function() {
-    var buttonText = "Quit Game"
+    var buttonText = "Quit Game",
+        cpu = "";
+        commandLine = "Place Ships"
+    if (this.state.showCpu){
+      cpu = <CpuBoard gameOver={this.playerWins} spaceChanged={this.attackPlayer}/>;
+      commandLine = "Click Enemy Sqaure!"
+    }
     if (this.state.gameOver){
       buttonText = "Play Again!"
+      if (this.state.playerWins){
+        commandLine = "You win!!!"
+      } else{
+        commandLine = "CPU wins, click button to play again!"
+      }
     }
     return (
-      <div>
-        <p>Heloooo</p>
+      <div className="game">
+        <p className="command">{commandLine}</p>
+        <div className="screen group">
+          <div className="player">
+            <PlayerBoard attacked={this.playerAttacked} cpuTurn={this.state.cpuTurn} doneShips={this.shipsSet} gameOver={this.cpuWins}/>
+            </div>
+          <div className="cpu">
+            {cpu}
+          </div>
+        </div>
         <button onClick={this.newGame}>{buttonText}</button>
-        <PlayerBoard doneShips={this.shipsSet} gameOver={this.cpuWins}/>
-        <CpuBoard gameOver={this.playerWins}/>
       </div>
 
     );

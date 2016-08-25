@@ -15,7 +15,7 @@
  */
 
 
- /*html, nav, body, section, article, ul, li, h1, h2, p, strong, em, a, button, input, img {
+ html, nav, body, section, article, ul, li, h1, h2, p, strong, em, a, button, input, img {
    margin: 0;
    border: 0;
    padding: 0;
@@ -27,4 +27,84 @@
    color: inherit;
    background: transparent;
    list-style-type: none;
- }*/
+ }
+
+ html {
+   font-family: 'Sigmar One', sans-serif;
+   background-image: url("https://i.ytimg.com/vi/LcL6oQdNzLg/maxresdefault.jpg");
+ }
+
+ button {
+   background: red;
+   border: 1px solid black;
+   color: black;
+   border-radius: 5px;
+   box-shadow: 0 2px 0 black;
+   padding: 5px 10px;
+   text-shadow: 0 0 2px #fff;
+   margin: auto;
+   display: block;
+   margin-top: 30px;
+ }
+
+ h1 {
+   font-size: 50px;
+   display: block;
+   text-align: center;
+   background-color: navy;
+   text-shadow: 0 0 6px #fff;
+}
+
+li {
+  float: left;
+  width: 50px;
+  height: 50px;
+  border: 5px solid black;
+  background: #006994;
+  cursor: pointer;
+}
+
+.screen {
+  width: 800px;
+  margin: auto;
+  display: block;
+  margin-top: 30px;
+}
+
+.player{
+  width: 300px;
+  float: left;
+}
+button > div.screen {
+  background: yellow;
+}
+.cpu{
+  width: 300px;
+  float: right;
+}
+
+.group:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+p {
+  text-align: center;
+  display:block;
+  font-size: 25px;
+  text-shadow: 0 0 6px #000;
+  color: red;
+  width: 500px;
+  margin: auto;
+  margin-top: 30px;
+}
+
+input {
+  background: white;
+  display: block;
+  margin: auto;
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+}
