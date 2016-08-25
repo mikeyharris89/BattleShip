@@ -33,10 +33,27 @@ var PlayerShow = React.createClass({
   },
 
   render: function() {
-    var player = PlayerStore.currentPlayer().name
+    var player = "";
+    var directions = "This is Battleship! An interactive game where you must\
+     destroy the super computer. First to sink their opponent's 10 ships\
+     wins! Place your 10 ships (which become WHITE), and then click away\
+     at your opponent's board. A hit turns the square RED, and a miss is GREEN";
+
+    if (PlayerStore.currentPlayer()){
+      player = PlayerStore.currentPlayer().name
+    }
     return (
       <div>
         <p>Hi {player}</p>
+        <div className="description group">
+          <div className="directions">{directions}</div>
+          <ul className="squares">
+            <li style={{backgroundColor: "white"}}>Ship</li>
+            <li style={{backgroundColor: "#006994"}}>Open</li>
+            <li style={{backgroundColor: "red"}}>Hit</li>
+            <li style={{backgroundColor: "green"}}>Miss</li>
+          </ul>
+        </div>
         <button onClick={this.createGame}>Play Game!</button>
         <button onClick={this.logOut}> Log Out</button>
       </div>

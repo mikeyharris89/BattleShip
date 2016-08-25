@@ -1,9 +1,6 @@
 var React = require('react'),
-    TileStore = require('../stores/tile_store'),
     BoardActions = require('../actions/board_actions'),
-    GameStore = require('../stores/game_store'),
-    BoardTile = require('./boardTile');
-
+    GameStore = require('../stores/game_store');
 
 var PlayerBoard = React.createClass({
 
@@ -18,20 +15,6 @@ var PlayerBoard = React.createClass({
     }
     return tiles
   },
-
-  componentWillReceiveProps: function(){
-    if (this.props.cpuTurn){
-      this.makeAttack();
-    }
-
-  },
-  // shouldComponentUpdate: function(){
-  //   debugger
-  //   if (this.props.cpuTurn){
-  //     this.makeAttack()
-  //   }
-  //   return true
-  // },
 
   handlePlayerBoardClick: function(e){
     var tile = this.state.tiles[parseInt(e.target.id)];
@@ -48,6 +31,7 @@ var PlayerBoard = React.createClass({
     var spots = this.state.shipSpots.concat(tile.id);
     tiles[tile.id] = tile;
     this.setState({tiles: tiles, shipsToPlace: this.state.shipsToPlace -= 1, shipSpots: spots});
+
     if (this.state.shipsToPlace === 0){
       this.props.doneShips();
     }
@@ -58,6 +42,7 @@ var PlayerBoard = React.createClass({
     while (this.state.tiles[attackPos].val === "M" || this.state.tiles[attackPos].val === "X"){
       attackPos = Math.floor(Math.random() * 25);
     }
+
     this.receiveAttack(attackPos)
   },
 
@@ -74,22 +59,42 @@ var PlayerBoard = React.createClass({
     tile.val = mark;
     tiles = this.state.tiles;
     tiles[tile.id] = tile;
-    this.setState({tiles: tiles, shipsLeft: shipsLeft, attacked: false})
     this.props.attacked();
+    this.setState({tiles: tiles, shipsLeft: shipsLeft, attacked: false})
+
     if (shipsLeft ===0){
       this.props.gameOver()
     }
+
+  },
+
+  getColor: function(tile){
+    var color;
+    if (tile.val === "0"){
+      color = "#006994";
+    } else if (tile.val === "S"){
+      color = "white";
+    } else if (tile.val === "M"){
+      color = "green";
+    } else {
+      color = "red"
+    }
+    return color;
   },
 
   render: function() {
+    if (this.props.cpuTurn){
+      window.setTimeout(this.makeAttack, 300);
+    }
     var tiles = this.state.tiles;
     if (!tiles){
       var board = "";
     } else {
       var board = Object.keys(tiles).map(function(key){
-        var tile = tiles[key]
-        return (<li className="board-tile" key={tile.id} id={tile.id}>{tile.val}</li>);
-      })
+        var tile = tiles[key],
+            color = this.getColor(tile);
+        return (<li className="board-tile" key={tile.id} id={tile.id} style={{backgroundColor: color}}></li>);
+      }.bind(this))
     }
     return(
       <div>

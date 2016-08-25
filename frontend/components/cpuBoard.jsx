@@ -53,15 +53,28 @@ var CpuBoard = React.createClass({
     }
   },
 
+  getColor: function(tile){
+    var color;
+    if (tile.val === "X"){
+      color = "red";
+    } else if (tile.val === "M"){
+      color = "green";
+    } else {
+      color = "#006994";
+    }
+    return color;
+  },
+
   render: function() {
     var tiles = this.state.tiles;
     if (!tiles){
       var board = "";
     } else {
       var board = Object.keys(tiles).map(function(key){
-        var tile = tiles[key]
-        return (<li className="board-tile" key={tile.id} id={tile.id}>{tile.val}</li>);
-      })
+        var tile = tiles[key],
+            color = this.getColor(tile);
+        return (<li className="board-tile" key={tile.id} id={tile.id} style={{backgroundColor: color}}></li>);
+      }.bind(this))
     }
     return(
       <div>
