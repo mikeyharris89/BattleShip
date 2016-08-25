@@ -8,11 +8,11 @@ var PlayerBoard = React.createClass({
   },
 
   createTiles: function(){
-    tiles = {};
+    var tiles = {};
     for (var i = 0; i < 25; i++) {
       tiles[i] = ({id: i, val: "0"});
     }
-    return tiles
+    return tiles;
   },
 
   handlePlayerBoardClick: function(e){
@@ -56,7 +56,7 @@ var PlayerBoard = React.createClass({
 
   setMark: function(tile, mark, shipsLeft){
     tile.val = mark;
-    tiles = this.state.tiles;
+    var tiles = this.state.tiles;
     tiles[tile.id] = tile;
     this.props.attacked();
     this.setState({tiles: tiles, shipsLeft: shipsLeft, attacked: false})

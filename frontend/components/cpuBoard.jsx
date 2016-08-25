@@ -8,7 +8,7 @@ var CpuBoard = React.createClass({
   },
 
   createTiles: function(){
-    tiles = {};
+    var tiles = {};
     for (var i = 0; i < 25; i++) {
       tiles[i] = ({id: i, val: "0"});
     }
@@ -21,7 +21,7 @@ var CpuBoard = React.createClass({
       while (tiles[tempNum].val === "S"){
         tempNum = Math.floor(Math.random() * 25);
       }
-      tile = tiles[tempNum];
+      var tile = tiles[tempNum];
       tile.val = "S";
       tiles[tempNum] = tile;
     }
@@ -42,7 +42,7 @@ var CpuBoard = React.createClass({
 
   setMark: function(tile, mark, shipsLeft){
     tile.val = mark;
-    tiles = this.state.tiles;
+    var tiles = this.state.tiles;
     tiles[tile.id] = tile;
     this.setState({tiles: tiles, shipsLeft: shipsLeft})
     this.props.spaceChanged();

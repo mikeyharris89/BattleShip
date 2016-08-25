@@ -11,6 +11,7 @@ class Api::PlayersController < ApplicationController
   def destroy
     @player = Player.find(params[:id])
     @player.destroy
+    render 'show'
   end
 
   private

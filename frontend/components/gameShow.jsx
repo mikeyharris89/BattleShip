@@ -49,8 +49,9 @@ var GameShow = React.createClass({
 
   render: function() {
     var buttonText = "Quit Game",
-        cpu = "";
-        commandLine = "Place Ships"
+        cpu = "",
+        commandLine = "Place Ships";
+
     if (this.state.showCpu){
       cpu = <CpuBoard gameOver={this.playerWins} spaceChanged={this.attackPlayer}/>;
       commandLine = "Click Enemy Sqaure!"
